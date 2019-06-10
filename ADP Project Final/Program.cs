@@ -15,10 +15,13 @@ namespace ADP_Project_Final
             //Database.SetInitializer(new DataBaseInitializer());
 
             ParkingManagerDatabaseEntities db = new ParkingManagerDatabaseEntities();
-            //db.Customers.Add(new Customer());
-            db.Customers.Add(new Customer() {Name = "Ahmad", ID = 1213213});
+            
+            db.Customers.Add(new Customer() {Name = "Zaher"});
             db.SaveChanges();
-            Console.WriteLine();
+            
+            Console.WriteLine(db.Customers.First().Name);
+
+            Console.ReadLine();
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemotingServices", "ADP Project Final\RemotingServices.csproj", "{9EDF1F5F-D15A-486E-8676-07FF3348918E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{4103E2AC-C9BD-4342-8ADF-0BD1267A6653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{34F56F46-0381-4A1B-98F4-337B5086AA50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{4103E2AC-C9BD-4342-8ADF-0BD1267A6653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4103E2AC-C9BD-4342-8ADF-0BD1267A6653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4103E2AC-C9BD-4342-8ADF-0BD1267A6653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34F56F46-0381-4A1B-98F4-337B5086AA50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34F56F46-0381-4A1B-98F4-337B5086AA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34F56F46-0381-4A1B-98F4-337B5086AA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34F56F46-0381-4A1B-98F4-337B5086AA50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5010629C-CE3F-4826-B9E3-7176ED39815B}
 	EndGlobalSection
 EndGlobal
