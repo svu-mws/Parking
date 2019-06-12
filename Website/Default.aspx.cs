@@ -23,7 +23,7 @@ namespace Website
             var leavingTime = inputLeaving.Text;
             System.Diagnostics.Debug.WriteLine(city + " " + company + " " + color + " " + arrivalTime + " " +
                                                leavingTime);
-            Global.DataSource.AddCar(city, company, color, arrivalTime, leavingTime);
+            Global.DataSource.AddCar(city, company, color, arrivalTime, leavingTime,1);
 
 //            Response.Redirect("Defausdslt.aspx");
 //            throw new NotImplementedException();
