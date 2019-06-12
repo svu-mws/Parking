@@ -11,7 +11,22 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+
+        protected void addCarBtn_Click(object sender, EventArgs e)
+        {
+            var city = inputCity.Text;
+            var company = inputCompany.Text;
+            var color = inputColor.Text;
+            var arrivalTime = inputArrival.Text;
+            var leavingTime = inputLeaving.Text;
+            System.Diagnostics.Debug.WriteLine(city + " " + company + " " + color + " " + arrivalTime + " " +
+                                               leavingTime);
+            Global.DataSource.AddCar(city, company, color, arrivalTime, leavingTime);
+
+//            Response.Redirect("Defausdslt.aspx");
+//            throw new NotImplementedException();
         }
     }
 }

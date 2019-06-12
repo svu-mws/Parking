@@ -16,7 +16,7 @@ namespace ADP_Project_Final
 
             ParkingManagerDatabaseEntities db = new ParkingManagerDatabaseEntities();
             
-            db.Customers.Add(new Customer() {Name = "Zaher"});
+            db.Customers.Add(new Customer() {Name = "Zaher",ID = 2343});
             db.SaveChanges();
             
             Console.WriteLine(db.Customers.First().Name);
