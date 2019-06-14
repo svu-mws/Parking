@@ -34,6 +34,8 @@ namespace Website
 
         public Car AddCar(string city, string company, string color, string arrivalTime, string leavingTime, int ParkID)
         {
+            return  new Car();
+
             //return remotingClientActivatedObject.AddCar(city,company,color,DateTime.Parse(arrivalTime),DateTime.Parse(leavingTime), ParkID);
         //    return new Car()
           //      {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()};
@@ -41,29 +43,35 @@ namespace Website
 
         public bool RemoveCar(int id)
         {
-          //  return remotingClientActivatedObject.RemoveCar(id);
-            
+            return true;
+            //  return remotingClientActivatedObject.RemoveCar(id);
+
         }
 
         public List<Car> GetAllCars()
         {
-         //   return remotingClientActivatedObject.GetAllCars();
+            return  new List<Car>();
+
+            //   return remotingClientActivatedObject.GetAllCars();
             
         }
 
         public Position GetCarPosition(int id)
         {
+            return  new Position();
            // return remotingClientActivatedObject.RetrievePositionOfCar(id);
             
         }
 
         public Position GetNearestPosition()
         {
+            return  new Position();
            //return remotingClientActivatedObject.RetrieveNearstPosition();
         }
 
         public List<Position> GetFreePositions()
         {
+            return  new List<Position>();
            // return remotingClientActivatedObject.RetrieveFreePostions();
         }
 
