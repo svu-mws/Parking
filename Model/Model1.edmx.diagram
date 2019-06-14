@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2fdb5f84faa14be090b3a784f6b2e729" Name="Diagram1">
-        <EntityTypeShape EntityType="ParkingManagerDatabaseModel.Car" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingManagerDatabaseModel.Customer" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingManagerDatabaseModel.Position" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingManagerDatabaseModel.RegisteredCar" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="ParkingManagerDatabaseModel.FK_Cars_Customers" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingManagerDatabaseModel.FK_Cars_Positions" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingManagerDatabaseModel.FK_Table_CarID" ManuallyRouted="false" />
-        <AssociationConnector Association="ParkingManagerDatabaseModel.FK_Table_Customer" ManuallyRouted="false" />
+      <Diagram DiagramId="ed61f788e2d14f34b8870795c5c10fe2" Name="Diagram1">
+        <EntityTypeShape EntityType="ADP_ParkingModel.Car" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ADP_ParkingModel.Customer" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ADP_ParkingModel.Position" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ADP_ParkingModel.RegisteredCar" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="ADP_ParkingModel.FK_Cars_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="ADP_ParkingModel.FK_Cars_Positions" ManuallyRouted="false" />
+        <AssociationConnector Association="ADP_ParkingModel.FK_Table_CarID" ManuallyRouted="false" />
+        <AssociationConnector Association="ADP_ParkingModel.FK_Table_Customer" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,10 +13,10 @@ namespace Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ParkingManagerDatabaseEntities : DbContext
+    public partial class ADP_ParkingEntities : DbContext
     {
-        public ParkingManagerDatabaseEntities()
-            : base("name=ParkingManagerDatabaseEntities")
+        public ADP_ParkingEntities()
+            : base("name=ADP_ParkingEntities")
         {
         }
     

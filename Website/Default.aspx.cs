@@ -26,7 +26,6 @@ namespace Website
             Global.DataSource.AddCar(city, company, color, arrivalTime, leavingTime,1);
 
 //            Response.Redirect("Defausdslt.aspx");
-//            throw new NotImplementedException();
         }
     }
 }

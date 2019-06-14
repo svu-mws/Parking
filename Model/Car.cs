@@ -27,7 +27,7 @@ namespace Model
         public Nullable<System.DateTime> ArrivalTime { get; set; }
         public Nullable<System.DateTime> LeavingTime { get; set; }
         public Nullable<int> ParkID { get; set; }
-        public Nullable<int> Registered { get; set; }
+        public int CustomerID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Position Position { get; set; }

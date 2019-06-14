@@ -14,7 +14,7 @@ namespace Model
     
     public partial class RegisteredCar
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
         public int CarID { get; set; }
         public int CustomerID { get; set; }
     

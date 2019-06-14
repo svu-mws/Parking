@@ -4,53 +4,54 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ParkingManagerDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ADP_ParkingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cars">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="100" />
           <Property Name="Company" Type="nvarchar" MaxLength="100" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
           <Property Name="ArrivalTime" Type="smalldatetime" />
           <Property Name="LeavingTime" Type="smalldatetime" />
           <Property Name="ParkID" Type="int" />
-          <Property Name="Registered" Type="int" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Vip" Type="int" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Floor" Type="int" />
           <Property Name="Department" Type="nvarchar" MaxLength="1" />
           <Property Name="Place" Type="int" />
         </EntityType>
         <EntityType Name="RegisteredCars">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CarID" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cars_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Cars">
-              <PropertyRef Name="Registered" />
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -90,7 +91,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ParkingManagerDatabaseModelStoreContainer">
+        <EntityContainer Name="ADP_ParkingModelStoreContainer">
           <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
@@ -116,19 +117,19 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ParkingManagerDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ADP_ParkingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ArrivalTime" Type="DateTime" Precision="0" />
           <Property Name="LeavingTime" Type="DateTime" Precision="0" />
           <Property Name="ParkID" Type="Int32" />
-          <Property Name="Registered" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Cars_Customers" FromRole="Cars" ToRole="Customers" />
           <NavigationProperty Name="Position" Relationship="Self.FK_Cars_Positions" FromRole="Cars" ToRole="Positions" />
           <NavigationProperty Name="RegisteredCars" Relationship="Self.FK_Table_CarID" FromRole="Cars" ToRole="RegisteredCars" />
@@ -137,8 +138,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Vip" Type="Int32" />
           <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Customers" FromRole="Customers" ToRole="Cars" />
           <NavigationProperty Name="RegisteredCars" Relationship="Self.FK_Table_Customer" FromRole="Customers" ToRole="RegisteredCars" />
         </EntityType>
@@ -146,7 +148,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Floor" Type="Int32" />
           <Property Name="Department" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Place" Type="Int32" />
@@ -154,23 +156,23 @@
         </EntityType>
         <EntityType Name="RegisteredCar">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CarID" Type="Int32" Nullable="false" />
           <Property Name="CustomerID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Self.FK_Table_CarID" FromRole="RegisteredCars" ToRole="Cars" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Table_Customer" FromRole="RegisteredCars" ToRole="Customers" />
         </EntityType>
         <Association Name="FK_Cars_Customers">
-          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
           <End Role="Cars" Type="Self.Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Cars">
-              <PropertyRef Name="Registered" />
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ParkingManagerDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ADP_ParkingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Positions" EntityType="Self.Position" />
@@ -237,9 +239,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ParkingManagerDatabaseModelStoreContainer" CdmEntityContainer="ParkingManagerDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="ADP_ParkingModelStoreContainer" CdmEntityContainer="ADP_ParkingEntities">
           <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="ParkingManagerDatabaseModel.Car">
+            <EntityTypeMapping TypeName="ADP_ParkingModel.Car">
               <MappingFragment StoreEntitySet="Cars">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -248,20 +250,21 @@
                 <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
                 <ScalarProperty Name="LeavingTime" ColumnName="LeavingTime" />
                 <ScalarProperty Name="ParkID" ColumnName="ParkID" />
-                <ScalarProperty Name="Registered" ColumnName="Registered" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="ParkingManagerDatabaseModel.Customer">
+            <EntityTypeMapping TypeName="ADP_ParkingModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Vip" ColumnName="Vip" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="ParkingManagerDatabaseModel.Position">
+            <EntityTypeMapping TypeName="ADP_ParkingModel.Position">
               <MappingFragment StoreEntitySet="Positions">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
@@ -271,9 +274,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegisteredCars">
-            <EntityTypeMapping TypeName="ParkingManagerDatabaseModel.RegisteredCar">
+            <EntityTypeMapping TypeName="ADP_ParkingModel.RegisteredCar">
               <MappingFragment StoreEntitySet="RegisteredCars">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>

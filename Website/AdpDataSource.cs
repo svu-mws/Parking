@@ -34,37 +34,37 @@ namespace Website
 
         public Car AddCar(string city, string company, string color, string arrivalTime, string leavingTime, int ParkID)
         {
-            return remotingClientActivatedObject.AddCar(city,company,color,DateTime.Parse(arrivalTime),DateTime.Parse(leavingTime), ParkID);
-            //return new Car()
-            //    {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()};
+            //return remotingClientActivatedObject.AddCar(city,company,color,DateTime.Parse(arrivalTime),DateTime.Parse(leavingTime), ParkID);
+        //    return new Car()
+          //      {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()};
         }
 
         public bool RemoveCar(int id)
         {
-            return remotingClientActivatedObject.RemoveCar(id);
+          //  return remotingClientActivatedObject.RemoveCar(id);
             
         }
 
         public List<Car> GetAllCars()
         {
-            return remotingClientActivatedObject.GetAllCars();
+         //   return remotingClientActivatedObject.GetAllCars();
             
         }
 
         public Position GetCarPosition(int id)
         {
-            return remotingClientActivatedObject.RetrievePositionOfCar(id);
+           // return remotingClientActivatedObject.RetrievePositionOfCar(id);
             
         }
 
         public Position GetNearestPosition()
         {
-           return remotingClientActivatedObject.RetrieveNearstPosition();
+           //return remotingClientActivatedObject.RetrieveNearstPosition();
         }
 
         public List<Position> GetFreePositions()
         {
-            return remotingClientActivatedObject.RetrieveFreePostions();
+           // return remotingClientActivatedObject.RetrieveFreePostions();
         }
 
         //- Add/remove/retrieve/modify VIP

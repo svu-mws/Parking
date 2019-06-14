@@ -50,26 +50,16 @@
                         <div class="form-group">
                             <label class="form-check-label" for="dateArrival">Arrival time</label>
                             <div class="input-group date" data-target-input="nearest">
-                                <asp:TextBox runat="server" CssClass="form-control datetimepicker-input" ID="inputArrival" data-target="#inputArrival"/>
+                                <asp:TextBox runat="server" ID="inputArrival" CssClass="datetimepicker" ></asp:TextBox>
 
-                                <div class="input-group-append" data-target="#dateArrival" data-toggle="datetimepicker">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="form-check-label" for="dateLeaving">Leaving time</label>
                             <div class="input-group date" id="dateLeaving" data-target-input="nearest">
-                                <asp:TextBox runat="server" CssClass="form-control datetimepicker-input" ID="inputLeaving" data-target="#dateLeaving"/>
+                                <asp:TextBox runat="server" ID="inputLeaving" CssClass="datetimepicker" ></asp:TextBox>
                                 
-                                <div class="input-group-append" data-target="#dateLeaving" data-toggle="datetimepicker">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 

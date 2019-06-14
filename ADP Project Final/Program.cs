@@ -12,14 +12,24 @@ namespace ADP_Project_Final
     {
         static void Main(string[] args)
         {
-            //Database.SetInitializer(new DataBaseInitializer());
+            ADP_ParkingEntities x = new ADP_ParkingEntities();
+            x.Customers.Add(new Customer() { Name = "Sror" });
+            x.SaveChanges();
 
-            ParkingManagerDatabaseEntities db = new ParkingManagerDatabaseEntities();
+            Console.WriteLine(x.Customers.ToList().Count);
+         //   Console.WriteLine(x.Customers.ToList().Count);
             
-            db.Customers.Add(new Customer() {Name = "Zaher",ID = 2343});
-            db.SaveChanges();
-            
-            Console.WriteLine(db.Customers.First().Name);
+            //var x = new API();
+            //var db = x.singlton();
+            //Console.WriteLine(db.Customers.ToList().Count);
+            //Database.SetInitializer(new DataBaseInitializer());
+            // var x = new API();
+            // ParkingManagerDatabaseEntities db = new ParkingManagerDatabaseEntities();
+            //db.Customers.SqlQuery("SET IDENTITY_INSERT Customers ON");
+            // db.Customers.Add(new Customer() {Name = "Zaher"});
+            // db.SaveChanges();
+
+            //Console.WriteLine(db.Customers.First().Name);
 
             Console.ReadLine();
         }
