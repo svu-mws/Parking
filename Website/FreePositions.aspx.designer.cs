@@ -10,6 +10,6 @@
 namespace Website {
     
     
-    public partial class _Default {
+    public partial class FreePositions {
     }
 }
