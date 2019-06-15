@@ -7,11 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Model
 {
     using System;
     using System.Collections.Generic;
     
+    [Serializable]
     public partial class Car
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +24,8 @@ namespace Model
             this.RegisteredCars = new HashSet<RegisteredCar>();
         }
     
+        [Key,DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { get; set; }
         public string City { get; set; }
         public string Company { get; set; }

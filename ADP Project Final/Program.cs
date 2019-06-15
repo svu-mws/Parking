@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using System.Data.Entity;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
+
 
 namespace ADP_Project_Final
 {
@@ -13,23 +18,15 @@ namespace ADP_Project_Final
         static void Main(string[] args)
         {
             ADP_ParkingEntities x = new ADP_ParkingEntities();
-            x.Customers.Add(new Customer() { Name = "Sror" });
-            x.SaveChanges();
+            ClientActivatedObject clientActivatedObject = new ClientActivatedObject();
+            ChannelServices.RegisterChannel(new TcpChannel(9000), false);
+            RemotingConfiguration.ApplicationName = "CAO";
+            RemotingConfiguration.RegisterActivatedServiceType(typeof(ClientActivatedObject));
 
-            Console.WriteLine(x.Customers.ToList().Count);
-         //   Console.WriteLine(x.Customers.ToList().Count);
-            
-            //var x = new API();
-            //var db = x.singlton();
-            //Console.WriteLine(db.Customers.ToList().Count);
-            //Database.SetInitializer(new DataBaseInitializer());
-            // var x = new API();
-            // ParkingManagerDatabaseEntities db = new ParkingManagerDatabaseEntities();
-            //db.Customers.SqlQuery("SET IDENTITY_INSERT Customers ON");
-            // db.Customers.Add(new Customer() {Name = "Zaher"});
-            // db.SaveChanges();
-
-            //Console.WriteLine(db.Customers.First().Name);
+            Console.WriteLine("Port 9000 has been started.");
+            Console.WriteLine("Server is configured now.");
+            Console.WriteLine("You can press any key to exit...");
+            Console.ReadLine();
 
             Console.ReadLine();
         }

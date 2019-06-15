@@ -9,151 +9,155 @@ namespace ADP_Project_Final
 {
    public class ClientActivatedObject : MarshalByRefObject
     {
-        //public static ParkingManagerDatabaseEntities context;
+        public static ADP_ParkingEntities context;
 
-        //public ClientActivatedObject()
-        //{
-        //    context = new ParkingManagerDatabaseEntities();
-        //}
-
-
-        //public Car AddCar(string City, string Company, string Color, DateTime ArrivalTime, DateTime LeavingTime ,int ParkID , string Registered =null )
-        //{
-        //    int CarID = context.Cars.ToList().Count + 1;
-        //    context.Cars.Add(new Car()
-        //    {
-        //        ID =  CarID,
-        //        City = City,
-        //        Company = Company,
-        //        Color = Color,
-        //        ArrivalTime = ArrivalTime,
-        //        ParkID = ParkID,
-        //       // Registered = Registered
+        public ClientActivatedObject()
+        {
+            context = new ADP_ParkingEntities();
+            context.Configuration.ProxyCreationEnabled = false;
+        }
 
 
-        //    });
-
-        //    //TODO:Add to registered cars
-        //    return context.Cars.Find(CarID);
-        //}
-
-        //public bool RemoveCar(int CarID)
-        //{
-        //    var car = context.Cars.Find(CarID);
-        //    context.Cars.Remove(car);
-        //    return true;
-        //}
-
-        //public List<Car> GetAllCars()
-        //{
-        //    return context.Cars.ToList();
-        //}
-
-        //public List<Position> RetrieveFreePostions()
-        //{
-        //    var ParksIDsOFCars = context.Cars.Select(c => c.ParkID);
-        //    var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
+        public Car AddCar(string city, string company, string color, DateTime arrivalTime, DateTime LeavingTime ,int parkID , string customerName)
+        {
+            var addedCar = new Car();
             
-        //    return FreePositions;
-        //}
-
-
-        //public Position RetrievePositionOfCar(int CarID)
-        //{
-        //    var PositionCarNumber = context.Cars.Find(CarID).ParkID;
-        //    Position PositionOfCar = context.Positions.Find(PositionCarNumber);
-        //    return PositionOfCar;
-        //}
-
-        //public Position RetrieveNearstPosition()
-        //{
-        //    var ParksIDsOFCars = context.Cars.Select(c => c.ParkID);
-        //    var FreePositionsIN_0Floor = GetFreePositionsIn_0Floor(ParksIDsOFCars);
-        //    if (FreePositionsIN_0Floor.Count > 0)
-        //        return FreePositionsIN_0Floor[0];
-        //    else
-        //    {
-        //        var PositiveFreePositions = GetFreePositionsInPositiveFloors(ParksIDsOFCars);
-        //        var NegativeFreePositions = GetFreePositionsInNegativeFloors(ParksIDsOFCars);
-        //        if (PositiveFreePositions.Count > 0 && NegativeFreePositions.Count == 0)
-        //            return PositiveFreePositions[0];
-        //        else
-        //        {
-        //            if (NegativeFreePositions.Count > 0 && PositiveFreePositions.Count == 0)
-        //                return NegativeFreePositions[0];
-        //            else
-        //            {
-        //                if (PositiveFreePositions.Count > 0 && NegativeFreePositions.Count > 0)
-        //                {
-        //                    var PositivePosition = PositiveFreePositions[0];
-        //                    var NegativePosition = NegativeFreePositions[0];
-
-        //                    // to do: complete this case
-        //                }
-        //            }
-
-        //        }
-        //    }
-
-
-        //        return new Position();
-        //}
-
-
-        ////public void AddVIP(string CustomerName, int CarID = -1)
-        ////{
-        ////    String RegisteredCarIDs = "";
-        ////    if (CarID != -1)
-        ////        RegisteredCarIDs = Convert.ToString(CarID);
-
-        ////    context.Customers.Add(new Customer()
-        ////    {
-        ////        Name = CustomerName,
-
-        ////    });
-        ////}
-
-        //public void ModifyVIP(int VIPID)
-        //{
-
-        //}
-
-        //public void RemoveVIP(int VIPID)
-        //{
-        //    var VIP = context.Customers.Find(VIPID);
-        //    context.Customers.Remove(VIP);
-        //}
-
-        //public Customer RetrieveVIP(int VIPID)
-        //{
-        //    return  context.Customers.Find(VIPID);
+            var customer = context.Customers
+                .FirstOrDefault(c => c.Name == customerName);
             
-        //}
+            var newCar = new Car()
+            {
+                City = city,
+                Company = company,
+                Color = color,
+                ArrivalTime = arrivalTime,
+                ParkID = parkID,
+                CustomerID = customer.ID
+            };
+            context.Cars.Add(newCar);
+            context.SaveChanges();
+
+            var CarID = newCar.ID;
+
+            //Is VIP Customer
+            if (customer.Vip == 1)
+            {
+            context.RegisteredCars.Add(new RegisteredCar()
+            {
+               CarID = CarID,
+              CustomerID = customer.ID
+            });
+            context.SaveChanges();
+            }
+
+               
+            addedCar= context.Cars.Find(CarID);
+            return addedCar;
+        }
+
+        
+        public bool RemoveCar(int carID)
+        {
+            var car = context.Cars.Find(carID);
+            context.Cars.Remove(car);
+            context.SaveChanges();
+            return true;
+        }
+
+        
+        public List<Car> GetAllCars()
+        {
+            var cars = context.Cars.ToList();
+            return cars;
+        }
+
+        
+        public List<Position> RetrieveFreePositions()
+        {
+            var ParksIDsOFCars = context.Cars.Where(c=> c.LeavingTime == null).Select(c => c.ParkID);
+            var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
+            
+            return FreePositions;
+        }
 
 
-        //public List<Position> GetFreePositionsIn_0Floor(IQueryable<int?> ParksIDsOFCars)
-        //{
-        //    List<Position> SortedFreePositionsInFloor = new List<Position>();
-        //    var FreePositionsInFloor = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID) && p.Floor == 0 ).ToList();
-        //    SortedFreePositionsInFloor = FreePositionsInFloor.OrderBy(p => p.Floor).ThenBy(p => p.Department).ThenBy(p => p.Place).ToList();
-        //    return SortedFreePositionsInFloor;
-        //}
+        public Position RetrievePositionOfCar(int carID)
+        {
+            var PositionCarNumber = context.Cars.Find(carID).ParkID;
+            Position PositionOfCar = context.Positions.Find(PositionCarNumber);
+            return PositionOfCar;
+        }
 
-        //public List<Position> GetFreePositionsInPositiveFloors( IQueryable<int?> ParksIDsOFCars)
-        //{
-        //    List<Position> SortedFreePositionsInFloor = new List<Position>();
+        
+        public Position RetrieveNearestPosition()
+        {
+            List<Position> sortedPositions = new List<Position>();
+            var ParksIDsOFCars = context.Cars.Where(c=> c.LeavingTime == null).Select(c => c.ParkID);
+            var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
+            sortedPositions = FreePositions.OrderBy(p => Math.Abs((int) p.Floor)).ToList();
+            return  sortedPositions[0];
+        }
 
-        //    var FreePositionsInFloor = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID) && (p.Floor == 1 || p.Floor == 2 || p.Floor == 3 || p.Floor == 4 || p.Floor == 5)).ToList();
-        //    SortedFreePositionsInFloor = FreePositionsInFloor.OrderBy(p => p.Floor).ThenBy(p => p.Department).ThenBy(p => p.Place).ToList();
-        //    return SortedFreePositionsInFloor;
 
-        //}
-        //public List<Position> GetFreePositionsInNegativeFloors(IQueryable<int?> ParksIDsOFCars)
-        //{
-        //    List<Position> SortedFreePositionsInFloor = new List<Position>();
-        //    var FreePositionsInFloor = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID) && (p.Floor == -1 || p.Floor == -2 )).ToList();
-        //    SortedFreePositionsInFloor = FreePositionsInFloor.OrderBy(p => p.Floor).ThenBy(p => p.Department).ThenBy(p => p.Place).ToList();
-        //    return SortedFreePositionsInFloor;
-        //}
+
+        public bool AddVIP(string customerName)
+        {
+         
+            context.Customers.Add(new Customer()
+            {
+                Name = customerName,
+
+            });
+            context.SaveChanges();
+            return true;
+        }
+
+        public bool ModifyVIP(int VIPID,string VIPName)
+        {
+            var VIP = context.Customers.Find(VIPID);
+            if (VIP != null){
+                VIP.Name = VIPName;
+                context.SaveChanges();
+            }
+
+            return true;
+        }
+
+        public bool RemoveCustomer(int customerID)
+        {
+            var customer= context.Customers.Find(customerID);
+            context.Customers.Remove(customer);
+            context.SaveChanges();
+            return  true;
+        }
+
+        public Customer RetrieveVIP(int VIPID)
+        {
+            return  context.Customers.Find(VIPID);
+            
+        }
+        
+        public bool SetCustomerAsVIP(int customerID)
+        {
+            var VIP = context.Customers.Find(customerID);
+            if (VIP != null){
+                VIP.Vip = 1;
+                context.SaveChanges();
+            }
+
+            return true;
+        }
+        
+        public bool RemoveRegisteredCar(int carID, int VIPID)
+        {
+            var registeredCar = context.RegisteredCars.FirstOrDefault( r => r.CustomerID == VIPID &&  r.CarID == carID);
+            if (registeredCar != null) {
+            context.RegisteredCars.Remove(registeredCar);
+            context.SaveChanges();
+            }
+            return true;
+
+        }
+
     }
 }
