@@ -20,7 +20,8 @@ namespace Website
             var color = inputColor.Text;
             var arrivalTime = inputArrival.Text;
             System.Diagnostics.Debug.WriteLine(city + " " + company + " " + color + " " + arrivalTime);
-            var result = Global.DataSource.AddCar(city, company, color, arrivalTime, arrivalTime, 1);
+            var customerName = inputCustomer.Text;
+            var result = Global.DataSource.AddCar(city, company, color, arrivalTime, arrivalTime, 1,customerName);
 
             if (result.ID != null)
             {

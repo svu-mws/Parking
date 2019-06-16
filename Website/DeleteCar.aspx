@@ -28,13 +28,13 @@
                     console.log(result);
                     let html = result.map((elem, index) => `<tr>
                                     <th scope="row">${index} </th>
-                                    <td>${elem.ID}</td>
-                                    <td>${elem.City}</td>
-                                    <td>${elem.Company}</td>
-                                    <td>${elem.ArrivalTime}</td>
-                                    <td>${elem.LeavingTime}</td>
-                                    <td>${elem.ParkID}</td>
-                                    <td><button data-id=${elem.ID} type="button" class="btn-remove btn btn-danger">&times;</button></td>
+                                    <td>${getContent(elem,"ID")}</td>
+                                    <td>${getContent(elem,"City")}</td>
+                                    <td>${getContent(elem,"Company")}</td>
+                                    <td>${getContent(elem,"ArrivalTime")}</td>
+                                    <td>${getContent(elem,"LeavingTime")}</td>
+                                    <td>${getContent(elem,"ParkID")}</td>
+                                    <td><button data-id=${getContent(elem,"ID")} type="button" class="btn-remove btn btn-danger">&times;</button></td>
                                 </tr>`);
                     $(".cars-table tbody").append(html);
                     $('.btn-remove').click((e) => {

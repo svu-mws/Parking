@@ -12,8 +12,9 @@ namespace Website
     {
         public IEnumerable<Car> Get()
         {
-            return new Car[] {new Car()
-                {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()} };
+            return Global.DataSource.GetAllCars();            
+//            return new Car[] {new Car()
+//                {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()} };
         }
 
         // GET api/cars/5

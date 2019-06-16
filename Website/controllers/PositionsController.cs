@@ -12,14 +12,7 @@ namespace Website
     {
         public IEnumerable<Position> Get()
         {
-            var rnd = new Random();
-            return new Position[] {
-                new Position() { ID = rnd.Next(100), Floor = 1, Department = "11", Place = 1 },
-                new Position() { ID = rnd.Next(100), Floor = 1, Department = "11", Place = 1 },
-                new Position() { ID = rnd.Next(100), Floor = 1, Department = "11", Place = 1 },
-                new Position() { ID = rnd.Next(100), Floor = 1, Department = "11", Place = 1 },
-                new Position() { ID = rnd.Next(100), Floor = 1, Department = "11", Place = 1 },
-                };
+            return Global.DataSource.GetFreePositions();
         }
 
         // GET api/cars/5

@@ -77,7 +77,7 @@
             $.ajax({
                 url: "api/positions", success: function (result) {
                     console.log(result);
-                    result.map(elem => table.row.add([elem.ID, elem.Floor, elem.Department, elem.Place, elem.ID > 50 ? 'Booked' : `<td><button data-id=${elem.ID} type="button" class="btn-book btn btn-sm btn-success"  data-toggle="modal" data-target="#bookModal">Book now</button></td>`]));
+                    result.map(elem => table.row.add([getContent(elem,"ID"), getContent(elem,"Floor"), getContent(elem,"Department"), getContent(elem,"Place"), getContent(elem,"ID") > 50 ? 'Booked' : `<td><button data-id=${getContent(elem,"ID")} type="button" class="btn-book btn btn-sm btn-success"  data-toggle="modal" data-target="#bookModal">Book now</button></td>`]));
                     table.draw();
                     // Setup - add a text input to each footer cell
 
