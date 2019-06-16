@@ -12,8 +12,8 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    [Serializable]
-    public partial class RegisteredCar
+    [Serializable] 
+     public  partial class RegisteredCar
     {
         public int ID { get; set; }
         public int CarID { get; set; }
