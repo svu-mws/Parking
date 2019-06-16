@@ -59,7 +59,7 @@
             header.appendTo('#freePositions thead');
             $('#freePositions thead tr:eq(1) th:not(.no-filter)').each(function (i) {
                 var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
 
                 $('input', this).on('keyup change', function () {
                     console.warn(typeof table.column(i).search());
@@ -77,22 +77,11 @@
             $.ajax({
                 url: "api/positions", success: function (result) {
                     console.log(result);
-                    result.map(elem => table.row.add([getContent(elem,"ID"), getContent(elem,"Floor"), getContent(elem,"Department"), getContent(elem,"Place"), getContent(elem,"ID") > 50 ? 'Booked' : `<td><button data-id=${getContent(elem,"ID")} type="button" class="btn-book btn btn-sm btn-success"  data-toggle="modal" data-target="#bookModal">Book now</button></td>`]));
+                    result.map(elem => table.row.add([getContent(elem,"ID"), getContent(elem,"Floor"), getContent(elem,"Department"), getContent(elem,"Place"), `<td><button data-id=${getContent(elem, "ID")} type="button" class="btn-book btn btn-sm btn-success">Book</button></td>`]));
                     table.draw();
                     // Setup - add a text input to each footer cell
 
                     $('.btn-book').click((e) => {
-                        //let carID = $(e.currentTarget).data('id');
-                        //$.ajax({
-                        //    url: `api/positions/${carID}`,
-                        //    type: 'DELETE',
-                        //    success: (result) => {
-                        //        console.log(result);
-                        //        // if success 
-                        //        location.reload();
-                        //    },
-                        //    error: e => alert(e.responseJSON.Message)
-                        //});
                     });
 
                 }

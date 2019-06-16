@@ -67,44 +67,36 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="addCustomer">Add Customer</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="addCar">Add Car</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="deleteCar">Delete a car</a>
+                    <a class="nav-link" href="deleteCar">Cars</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="freePositions">Free Positions </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="carPosition">Car position</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="nearestPosition">Nearest Position </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="vip">VIP </a>
+                    <a class="nav-link" href="customers">Customers</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="registeredCar">Registered Car </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="vipBill">Bill (VIP)</a>
+                    <a class="nav-link" href="bill">Bill</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="nonVipBill">Bill (Non VIP) </a>
+                    <a class="nav-link" href="positionsMap">Position Map</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="map">Map</a>
-                </li>
+
             </ul>
         </div>
     </nav>
     <div class="container-fluid">
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         <hr/>
         <footer>
             <p>&copy; <%: DateTime.Now.Year %> - Ahmad Alyassin- Mohammad Nashouq - Mohammad Zaher Ayrout - Obada Al Jabasini</p>

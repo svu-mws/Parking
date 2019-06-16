@@ -74,10 +74,10 @@ namespace Website
            return remotingClientActivatedObject.RetrieveFreePositions();
         }
 
-        public bool AddVIP(string  customerName)
+        public bool AddCustomer(string  customerName,bool isVIP)
         {
             //Done
-            return remotingClientActivatedObject.AddVIP(customerName);
+            return remotingClientActivatedObject.AddCustomer(customerName,isVIP);
         }
 
         public bool ModifyVIP(int VIPID, string VIPName)

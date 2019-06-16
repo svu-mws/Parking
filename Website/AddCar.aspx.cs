@@ -19,9 +19,10 @@ namespace Website
             var company = inputCompany.Text;
             var color = inputColor.Text;
             var arrivalTime = inputArrival.Text;
-            System.Diagnostics.Debug.WriteLine(city + " " + company + " " + color + " " + arrivalTime);
+            var positionID = Convert.ToInt32(inputPosition.Text);
+            System.Diagnostics.Debug.WriteLine(city + " " + company + " " + color + " " + arrivalTime+ " " + positionID);
             var customerName = inputCustomer.Text;
-            var result = Global.DataSource.AddCar(city, company, color, arrivalTime, arrivalTime, 1,customerName);
+            var result = Global.DataSource.AddCar(city, company, color, arrivalTime, arrivalTime,positionID,customerName);
 
             if (result.ID != null)
             {
