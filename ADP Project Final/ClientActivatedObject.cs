@@ -100,14 +100,23 @@ namespace ADP_Project_Final
 
 
 
-        public bool AddVIP(string customerName)
+
+        public bool AddCustomer(string customerName , bool IsVIP)
         {
-         
+         if (IsVIP){
             context.Customers.Add(new Customer()
             {
                 Name = customerName,
+                Vip = 1
 
             });
+         }else
+         
+             context.Customers.Add(new Customer()
+             {
+                 Name = customerName,
+
+             });
             context.SaveChanges();
             return true;
         }
