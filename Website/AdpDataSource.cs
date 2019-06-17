@@ -36,6 +36,11 @@ namespace Website
             RemotingConfiguration.RegisterActivatedClientType(typeof(ClientActivatedObject), "tcp://localhost:9000/CAO");
             remotingClientActivatedObject = new ClientActivatedObject();
         }
+        internal bool login(string username, string password)
+        {
+            // Check if username is customer or not
+            return false;
+        }
 
         public Car AddCar(string city, string company, string color, string arrivalTime, string leavingTime, int ParkID, string customerName, bool isRegistered)
         {
