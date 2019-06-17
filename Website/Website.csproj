@@ -120,6 +120,11 @@
     <Content Include="About.aspx" />
     <Content Include="AddCustomer.aspx" />
     <Content Include="AddCar.aspx" />
+    <Content Include="User.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="PositionsMap.aspx" />
+    <Content Include="Bills.aspx" />
+    <Content Include="RegisteredCars.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -180,6 +185,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Default.aspx" />
+    <Content Include="AllCustomers.aspx" />
     <Content Include="DeleteCar.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -287,6 +293,41 @@
     <Compile Include="AddCar.aspx.designer.cs">
       <DependentUpon>AddCar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User.aspx.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User.aspx.designer.cs">
+      <DependentUpon>User.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PositionsMap.aspx.cs">
+      <DependentUpon>PositionsMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PositionsMap.aspx.designer.cs">
+      <DependentUpon>PositionsMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bills.aspx.cs">
+      <DependentUpon>Bills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bills.aspx.designer.cs">
+      <DependentUpon>Bills.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisteredCars.aspx.cs">
+      <DependentUpon>RegisteredCars.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisteredCars.aspx.designer.cs">
+      <DependentUpon>RegisteredCars.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -314,6 +355,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllCustomers.aspx.cs">
+      <DependentUpon>AllCustomers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllCustomers.aspx.designer.cs">
+      <DependentUpon>AllCustomers.aspx</DependentUpon>
     </Compile>
     <Compile Include="DeleteCar.aspx.cs">
       <DependentUpon>DeleteCar.aspx</DependentUpon>

@@ -70,26 +70,25 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="addCustomer">Add Customer</a>
+                    <a class="nav-link" href="AddCustomer.aspx">Add Customer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="addCar">Add Car</a>
+                    <a class="nav-link" href="AddCar.aspx">Add Car</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="deleteCar">Cars</a>
+                    <a class="nav-link" href="DeleteCar.aspx">Cars</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="customers">Customers</a>
+                    <a class="nav-link" href="AllCustomers.aspx">Customers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registeredCar">Registered Car </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="bill">Bill</a>
+                    <a class="nav-link" href="RegisteredCars.aspx">Registered Cars</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="positionsMap">Position Map</a>
+                    <a class="nav-link" href="Bills">Bills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="PositionsMap.aspx">Position Map</a>
                 </li>
 
             </ul>
