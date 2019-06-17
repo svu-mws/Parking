@@ -11,31 +11,36 @@ namespace Website
 {
     public class AdpDataSource
     {
-        private static ClientActivatedObject remotingClientActivatedObject ;
-        //private static WCFServices.BidsServiceClient serviceClient;
+        private static ClientActivatedObject remotingClientActivatedObject;
+        private static ServiceReference1.Service1Client wcfServiceClient;
         private static bool _isInitialized = false;
 
         public AdpDataSource()
         {
-             object[] url = {new UrlAttribute("tcp://localhost:9000/CAO")};
-             remotingClientActivatedObject = (ClientActivatedObject) Activator.CreateInstance(
-               typeof (ClientActivatedObject), null, url);
+
+            wcfServiceClient = new ServiceReference1.Service1Client();
+
+            System.Diagnostics.Debug.WriteLine("!!!!   " + wcfServiceClient.GetNonFreePositionsForShowMap().Length);
+
+            object[] url = { new UrlAttribute("tcp://localhost:9000/CAO") };
+            remotingClientActivatedObject = (ClientActivatedObject)Activator.CreateInstance(
+              typeof(ClientActivatedObject), null, url);
             if (_isInitialized == false)
             {
-                     remotingClientActivatedObject = new ClientActivatedObject();
-                    //serviceClient = new BidsServiceClient();
+                remotingClientActivatedObject = new ClientActivatedObject();
+                //serviceClient = new BidsServiceClient();
 
                 _isInitialized = true;
             }
 
-            RemotingConfiguration.RegisterActivatedClientType(typeof(ClientActivatedObject),"tcp://localhost:9000/CAO");
-            remotingClientActivatedObject=new ClientActivatedObject();     
+            RemotingConfiguration.RegisterActivatedClientType(typeof(ClientActivatedObject), "tcp://localhost:9000/CAO");
+            remotingClientActivatedObject = new ClientActivatedObject();
         }
 
-        public Car AddCar(string city, string company, string color, string arrivalTime, string leavingTime, int ParkID,string customerName)
+        public Car AddCar(string city, string company, string color, string arrivalTime, string leavingTime, int ParkID, string customerName, bool isRegistered)
         {
             //Done
-            Car newCar =  remotingClientActivatedObject.AddCar(city,company,color,Convert.ToDateTime(arrivalTime),DateTime.Now, ParkID,customerName);
+            Car newCar = remotingClientActivatedObject.AddCar(city, company, color, Convert.ToDateTime(arrivalTime), DateTime.Now, ParkID, customerName, isRegistered);
             return newCar;
             //    return new Car()
             //      {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()};
@@ -52,32 +57,32 @@ namespace Website
         {
             //Done
             return remotingClientActivatedObject.GetAllCars();
-            
+
         }
 
         public Position GetCarPosition(int id)
         {
-           //Done
-           return remotingClientActivatedObject.RetrievePositionOfCar(id);
-            
+            //Done
+            return remotingClientActivatedObject.RetrievePositionOfCar(id);
+
         }
 
         public Position GetNearestPosition()
         {
-           // Done
-           return remotingClientActivatedObject.RetrieveNearestPosition();
+            // Done
+            return remotingClientActivatedObject.RetrieveNearestPosition();
         }
 
         public List<Position> GetFreePositions()
         {
-           // Done
-           return remotingClientActivatedObject.RetrieveFreePositions();
+            // Done
+            return remotingClientActivatedObject.RetrieveFreePositions();
         }
 
-        public bool AddCustomer(string  customerName,bool isVIP)
+        public bool AddCustomer(string customerName, bool isVIP)
         {
             //Done
-            return remotingClientActivatedObject.AddCustomer(customerName,isVIP);
+            return remotingClientActivatedObject.AddCustomer(customerName, isVIP);
         }
 
         public bool ModifyVIP(int VIPID, string VIPName)
@@ -89,13 +94,13 @@ namespace Website
         public bool RemoveCustomer(int customerID)
         {
             //TODO: solve problem when remove  VIP who have 
-           return remotingClientActivatedObject.RemoveCustomer(customerID);
+            return remotingClientActivatedObject.RemoveCustomer(customerID);
         }
         public Customer RetrieveVIP(int VIPID)
         {
             //Done
-            return  remotingClientActivatedObject.RetrieveVIP(VIPID);
-            
+            return remotingClientActivatedObject.RetrieveVIP(VIPID);
+
         }
 
         public bool SetCustomerAsVIP(int customerID)

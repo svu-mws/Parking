@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ADP_Project_Final
 {
-   public class ClientActivatedObject : MarshalByRefObject
+    public class ClientActivatedObject : MarshalByRefObject
     {
         public static ADP_ParkingEntities context;
 
@@ -18,13 +18,14 @@ namespace ADP_Project_Final
         }
 
 
-        public Car AddCar(string city, string company, string color, DateTime arrivalTime, DateTime LeavingTime ,int parkID , string customerName)
+        public Car AddCar(string city, string company, string color, DateTime arrivalTime, DateTime LeavingTime,
+            int parkID, string customerName, bool isGrgisterdCar)
         {
             var addedCar = new Car();
-            
+
             var customer = context.Customers
                 .FirstOrDefault(c => c.Name == customerName);
-            
+
             var newCar = new Car()
             {
                 City = city,
@@ -40,133 +41,210 @@ namespace ADP_Project_Final
             var CarID = newCar.ID;
 
             //Is VIP Customer
-            if (customer.Vip == 1)
+            if (customer.Vip == 1 && isGrgisterdCar )
             {
-            context.RegisteredCars.Add(new RegisteredCar()
-            {
-               CarID = CarID,
-              CustomerID = customer.ID
-            });
-            context.SaveChanges();
+                context.RegisteredCars.Add(new RegisteredCar()
+                {
+                    CarID = CarID,
+                    CustomerID = customer.ID
+                });
+                context.SaveChanges();
             }
 
-               
-            addedCar= context.Cars.Find(CarID);
+
+            addedCar = context.Cars.Find(CarID);
             return addedCar;
         }
 
-        
+
         public bool RemoveCar(int carID)
         {
-            var car = context.Cars.Find(carID);
-            context.Cars.Remove(car);
-            context.SaveChanges();
-            return true;
+            try
+            {
+                var car = context.Cars.Find(carID);
+                context.Cars.Remove(car);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        
+
         public List<Car> GetAllCars()
         {
             var cars = context.Cars.ToList();
             return cars;
         }
 
-        
+
         public List<Position> RetrieveFreePositions()
         {
-            var ParksIDsOFCars = context.Cars.Where(c=> c.LeavingTime == null).Select(c => c.ParkID);
+            var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID);
             var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
-            
+
             return FreePositions;
         }
 
 
         public Position RetrievePositionOfCar(int carID)
         {
-            var PositionCarNumber = context.Cars.Find(carID).ParkID;
-            Position PositionOfCar = context.Positions.Find(PositionCarNumber);
-            return PositionOfCar;
+            try
+            {
+                var PositionCarNumber = context.Cars.Find(carID).ParkID;
+                Position PositionOfCar = context.Positions.Find(PositionCarNumber);
+                return PositionOfCar;
+            }
+            catch (Exception e)
+            {
+                return new Position() {ID = -1};
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        
+        public bool MakePositionCarEmpty(int positionID)
+        {
+            try
+            {
+                var car = context.Cars.FirstOrDefault(c => c.ParkID == positionID);
+                car.LeavingTime = DateTime.Now;
+                car.ParkID = null;
+                context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                Console.WriteLine(e);
+                throw;
+            }
+            
+        }
+
         public Position RetrieveNearestPosition()
         {
             List<Position> sortedPositions = new List<Position>();
-            var ParksIDsOFCars = context.Cars.Where(c=> c.LeavingTime == null).Select(c => c.ParkID);
+            var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID);
             var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
             sortedPositions = FreePositions.OrderBy(p => Math.Abs((int) p.Floor)).ToList();
-            return  sortedPositions[0];
+            return sortedPositions[0];
         }
 
 
-
-
-        public bool AddCustomer(string customerName , bool IsVIP)
+        public bool AddCustomer(string customerName, bool IsVIP)
         {
-         if (IsVIP){
-            context.Customers.Add(new Customer()
+            if (IsVIP)
             {
-                Name = customerName,
-                Vip = 1
+                context.Customers.Add(new Customer()
+                {
+                    Name = customerName,
+                    Vip = 1
+                });
+            }
+            else
 
-            });
-         }else
-         
-             context.Customers.Add(new Customer()
-             {
-                 Name = customerName,
+                context.Customers.Add(new Customer()
+                {
+                    Name = customerName,
+                });
 
-             });
             context.SaveChanges();
             return true;
         }
 
-        public bool ModifyVIP(int VIPID,string VIPName)
+        public bool ModifyVIP(int VIPID, string VIPName)
         {
-            var VIP = context.Customers.Find(VIPID);
-            if (VIP != null){
-                VIP.Name = VIPName;
-                context.SaveChanges();
-            }
+            try
+            {
+                var VIP = context.Customers.Find(VIPID);
+                if (VIP != null)
+                {
+                    VIP.Name = VIPName;
+                    context.SaveChanges();
+                }
 
-            return true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         public bool RemoveCustomer(int customerID)
         {
-            var customer= context.Customers.Find(customerID);
-            context.Customers.Remove(customer);
-            context.SaveChanges();
-            return  true;
+            try
+            {
+                var customer = context.Customers.Find(customerID);
+                context.Customers.Remove(customer);
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
 
         public Customer RetrieveVIP(int VIPID)
         {
-            return  context.Customers.Find(VIPID);
-            
+            try
+            {
+                return context.Customers.Find(VIPID);
+            }
+            catch (Exception e)
+            {
+                return new Customer(){ID = -1};
+                Console.WriteLine(e);
+                throw;
+            }
+          
         }
-        
+
         public bool SetCustomerAsVIP(int customerID)
         {
-            var VIP = context.Customers.Find(customerID);
-            if (VIP != null){
-                VIP.Vip = 1;
+            try
+            {
+                var VIP = context.Customers.Find(customerID);
+                if (VIP != null)
+                {
+                    VIP.Vip = 1;
+                    context.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+                Console.WriteLine(e);
+                throw;
+            }
+           
+        }
+
+        public bool RemoveRegisteredCar(int carID, int VIPID)
+        {
+            var registeredCar = context.RegisteredCars.FirstOrDefault(r => r.CustomerID == VIPID && r.CarID == carID);
+            if (registeredCar != null)
+            {
+                context.RegisteredCars.Remove(registeredCar);
                 context.SaveChanges();
             }
 
             return true;
         }
-        
-        public bool RemoveRegisteredCar(int carID, int VIPID)
-        {
-            var registeredCar = context.RegisteredCars.FirstOrDefault( r => r.CustomerID == VIPID &&  r.CarID == carID);
-            if (registeredCar != null) {
-            context.RegisteredCars.Remove(registeredCar);
-            context.SaveChanges();
-            }
-            return true;
-
-        }
-
     }
 }

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfPosition">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Position" nillable="true" type="tns:Position" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPosition" nillable="true" type="tns:ArrayOfPosition" />
+  <xs:complexType name="Position">
+    <xs:sequence>
+      <xs:element name="_x003C_Cars_x003E_k__BackingField" nillable="true" type="tns:ArrayOfCar" />
+      <xs:element name="_x003C_Department_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Floor_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_ID_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Place_x003E_k__BackingField" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Position" nillable="true" type="tns:Position" />
+  <xs:complexType name="ArrayOfCar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Car" nillable="true" type="tns:Car" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCar" nillable="true" type="tns:ArrayOfCar" />
+  <xs:complexType name="Car">
+    <xs:sequence>
+      <xs:element name="_x003C_ArrivalTime_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_City_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Color_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Company_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CustomerID_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Customer_x003E_k__BackingField" nillable="true" type="tns:Customer" />
+      <xs:element name="_x003C_ID_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_LeavingTime_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_ParkID_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_Position_x003E_k__BackingField" nillable="true" type="tns:Position" />
+      <xs:element name="_x003C_RegisteredCars_x003E_k__BackingField" nillable="true" type="tns:ArrayOfRegisteredCar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Car" nillable="true" type="tns:Car" />
+  <xs:complexType name="Customer">
+    <xs:sequence>
+      <xs:element name="_x003C_Cars_x003E_k__BackingField" nillable="true" type="tns:ArrayOfCar" />
+      <xs:element name="_x003C_ID_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RegisteredCars_x003E_k__BackingField" nillable="true" type="tns:ArrayOfRegisteredCar" />
+      <xs:element name="_x003C_Vip_x003E_k__BackingField" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Customer" nillable="true" type="tns:Customer" />
+  <xs:complexType name="ArrayOfRegisteredCar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RegisteredCar" nillable="true" type="tns:RegisteredCar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegisteredCar" nillable="true" type="tns:ArrayOfRegisteredCar" />
+  <xs:complexType name="RegisteredCar">
+    <xs:sequence>
+      <xs:element name="_x003C_CarID_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Car_x003E_k__BackingField" nillable="true" type="tns:Car" />
+      <xs:element name="_x003C_CustomerID_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Customer_x003E_k__BackingField" nillable="true" type="tns:Customer" />
+      <xs:element name="_x003C_ID_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegisteredCar" nillable="true" type="tns:RegisteredCar" />
+</xs:schema>

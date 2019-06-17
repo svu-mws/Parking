@@ -19,6 +19,7 @@ namespace ADP_Project_Final
         {
             ADP_ParkingEntities x = new ADP_ParkingEntities();
             ClientActivatedObject clientActivatedObject = new ClientActivatedObject();
+            var u = clientActivatedObject.RetrieveVIP(300);
             ChannelServices.RegisterChannel(new TcpChannel(9000), false);
             RemotingConfiguration.ApplicationName = "CAO";
             RemotingConfiguration.RegisterActivatedServiceType(typeof(ClientActivatedObject));
