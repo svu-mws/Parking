@@ -55,7 +55,13 @@ namespace Website
         {
             //Done
             return remotingClientActivatedObject.RemoveCar(id);
+        }
 
+        public bool checkoutCar(int id)
+        {
+            //Done
+            return true;
+//            return remotingClientActivatedObject.RemoveCar(id);
         }
 
         public List<Car> GetAllCars()
@@ -101,6 +107,7 @@ namespace Website
             //TODO: solve problem when remove  VIP who have 
             return remotingClientActivatedObject.RemoveCustomer(customerID);
         }
+
         public Customer RetrieveVIP(int VIPID)
         {
             //Done
@@ -121,5 +128,18 @@ namespace Website
         }
 
         //- Add/remove/retrieve registered car   
+        public List<Customer> GetAllCustomers()
+        {
+//            todo get All customers 
+//            return  remotingClientActivatedObject.GetAllCars();
+            return new List<Customer>()
+            {
+                new Customer() {Name = "Zaher", Vip = 1},
+                new Customer() {Name = "Zaher1", Vip = 1},
+                new Customer() {Name = "Zaher2", Vip = 1},
+                new Customer() {Name = "Zaher3", Vip = 1},
+                new Customer() {Name = "Zaher4", Vip = 1},
+            };
+        }
     }
 }

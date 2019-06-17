@@ -10,6 +10,6 @@
 namespace Website {
     
     
-    public partial class PositionsMap {
+    public partial class Cars {
     }
 }

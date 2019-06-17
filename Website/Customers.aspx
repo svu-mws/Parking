@@ -2,17 +2,14 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <h2>Remove A Car</h2>
+        <h2>Customers</h2>
         <table class="shadow cars-table table table-hover">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">ID</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">ArrivalTime</th>
-                    <th scope="col">LeavingTime</th>
-                    <th scope="col">ParkID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">VIP</th>
                     <th scope="col">Manage</th>
                 </tr>
             </thead>
@@ -24,23 +21,25 @@
         $(document).ready(function () {
 
             $.ajax({
-                url: "api/cars", success: function (result) {
+                url: "api/customer", success: function (result) {
                     console.log(result);
-                    let html = result.map((elem, index) => `<tr>
+                    let html = result.map((elem, index) => {
+                        
+                    let ID = getContent(elem,"ID");
+                    let Name = getContent(elem,"Name");
+                    let Vip = getContent(elem,"Vip");return `<tr>
                                     <th scope="row">${index} </th>
-                                    <td>${getContent(elem,"ID")}</td>
-                                    <td>${getContent(elem,"City")}</td>
-                                    <td>${getContent(elem,"Company")}</td>
-                                    <td>${getContent(elem,"ArrivalTime")}</td>
-                                    <td>${getContent(elem,"LeavingTime")}</td>
-                                    <td>${getContent(elem,"ParkID")}</td>
-                                    <td><button data-id=${getContent(elem,"ID")} type="button" class="btn-remove btn btn-danger">&times;</button></td>
-                                </tr>`);
+                                    <td>${ID}</td>
+                                    <td>${Name}</td>
+                                    <td>  <input class="form-check-input" type="checkbox" ${Vip===1?'checked':''} disabled></td>
+                                    <td>  <button data-id=${ID} type="button" class="btn-remove btn btn-danger"><i class="fas fa-times-circle"></i></button></td>
+                                </tr>`                    
+                    });
                     $(".cars-table tbody").append(html);
                     $('.btn-remove').click((e) => {
                         let carID = $(e.currentTarget).data('id');
                         $.ajax({
-                            url: `api/cars/${carID}`,
+                            url: `api/customer/${carID}`,
                             type: 'DELETE',
                             success: (result) => {
                                 console.log(result);

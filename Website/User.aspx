@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Website.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="User.aspx.cs" Inherits="Website.User" %>
 
 <!DOCTYPE html>
 
@@ -28,8 +28,7 @@
                     </div>
                     <div class="modal-footer">
                         <asp:Button runat="server" CssClass="btn btn-primary" Text="Login" OnClick="Login_Click"/>
-                        <asp:Label runat="server" Text="" ID="txtResult" ForeColor="Red" readonly/>
-
+                        <asp:Label runat="server" Text="TEST" ID="txtResult" ForeColor="Red" readonly/>
                     </div>
                 </div>
             </div>

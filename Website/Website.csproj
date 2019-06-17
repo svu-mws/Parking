@@ -122,6 +122,22 @@
     <Content Include="About.aspx" />
     <Content Include="AddCustomer.aspx" />
     <Content Include="AddCar.aspx" />
+    <Content Include="Content\fa-brands-400.eot.css" />
+    <Content Include="Content\fa-brands-400.svg.css" />
+    <Content Include="Content\fa-brands-400.ttf.css" />
+    <Content Include="Content\fa-brands-400.woff.css" />
+    <Content Include="Content\fa-brands-400.woff2.css" />
+    <Content Include="Content\fa-regular-400.eot.css" />
+    <Content Include="Content\fa-regular-400.svg.css" />
+    <Content Include="Content\fa-regular-400.ttf.css" />
+    <Content Include="Content\fa-regular-400.woff.css" />
+    <Content Include="Content\fa-regular-400.woff2.css" />
+    <Content Include="Content\fa-solid-900.eot.css" />
+    <Content Include="Content\fa-solid-900.svg.css" />
+    <Content Include="Content\fa-solid-900.ttf.css" />
+    <Content Include="Content\fa-solid-900.woff.css" />
+    <Content Include="Content\fa-solid-900.woff2.css" />
+    <Content Include="Content\font-awesome-all.css" />
     <Content Include="User.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PositionsMap.aspx" />
@@ -187,8 +203,8 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Default.aspx" />
-    <Content Include="AllCustomers.aspx" />
-    <Content Include="DeleteCar.aspx" />
+    <Content Include="Customers.aspx" />
+    <Content Include="Cars.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -302,6 +318,7 @@
     <Compile Include="AddCar.aspx.designer.cs">
       <DependentUpon>AddCar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="controllers\CustomerController.cs" />
     <Compile Include="User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -365,19 +382,19 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AllCustomers.aspx.cs">
-      <DependentUpon>AllCustomers.aspx</DependentUpon>
+    <Compile Include="Customers.aspx.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AllCustomers.aspx.designer.cs">
-      <DependentUpon>AllCustomers.aspx</DependentUpon>
+    <Compile Include="Customers.aspx.designer.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DeleteCar.aspx.cs">
-      <DependentUpon>DeleteCar.aspx</DependentUpon>
+    <Compile Include="Cars.aspx.cs">
+      <DependentUpon>Cars.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DeleteCar.aspx.designer.cs">
-      <DependentUpon>DeleteCar.aspx</DependentUpon>
+    <Compile Include="Cars.aspx.designer.cs">
+      <DependentUpon>Cars.aspx</DependentUpon>
     </Compile>
     <Compile Include="FreePositions.aspx.cs">
       <DependentUpon>FreePositions.aspx</DependentUpon>

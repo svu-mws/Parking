@@ -31,6 +31,7 @@ namespace Website
         // PUT api/cars/5
         public void Put(int id, [FromBody]string value)
         {
+            Global.DataSource.checkoutCar(id);
         }
 
         // DELETE api/cars/5

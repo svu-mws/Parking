@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class DeleteCar : System.Web.UI.Page
+    public partial class Cars: System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

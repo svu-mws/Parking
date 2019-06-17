@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="form-check-label" for="inputPositon">Position</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="inputPosition" placeholder="Nearest Position" />
-                            <div id="btnNearest" data-toggle="modal" data-target="#bookModal" class="btn btn-primary btn-success">Get Nearest Position</div>
+                            <div id="btnNearest" data-toggle="modal" data-target="#bookModal" class="btn btn-primary btn-success">Choose Positions</div>
                         </div>
 
                     </form>
