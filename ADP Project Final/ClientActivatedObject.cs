@@ -62,13 +62,18 @@ namespace ADP_Project_Final
             try
             {
                 var car = context.Cars.Find(carID);
-                context.Cars.Remove(car);
-                context.SaveChanges();
-                return true;
+                if (car != null)
+                {
+                    context.Cars.Remove(car);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+
             }
             catch (Exception e)
             {
-                return false;
                 Console.WriteLine(e);
                 throw;
             }
@@ -95,13 +100,18 @@ namespace ADP_Project_Final
         {
             try
             {
-                var PositionCarNumber = context.Cars.Find(carID).ParkID;
-                Position PositionOfCar = context.Positions.Find(PositionCarNumber);
-                return PositionOfCar;
+                var position = context.Cars.Find(carID);
+                if (position != null)
+                {
+                    var PositionCarNumber = position.ParkID;
+                    Position PositionOfCar = context.Positions.Find(PositionCarNumber);
+                    return PositionOfCar;  
+                }
+                else
+                    return new Position() {ID = -1};
             }
             catch (Exception e)
-            {
-                return new Position() {ID = -1};
+            {              
                 Console.WriteLine(e);
                 throw;
             }
@@ -112,15 +122,20 @@ namespace ADP_Project_Final
             try
             {
                 var car = context.Cars.FirstOrDefault(c => c.ParkID == positionID);
-                car.LeavingTime = DateTime.Now;
-                car.ParkID = null;
-                context.SaveChanges();
+                if (car != null)
+                {
+                    car.LeavingTime = DateTime.Now;
+                    car.ParkID = null;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
 
-                return true;
+
             }
             catch (Exception e)
             {
-                return false;
                 Console.WriteLine(e);
                 throw;
             }
@@ -167,13 +182,15 @@ namespace ADP_Project_Final
                 {
                     VIP.Name = VIPName;
                     context.SaveChanges();
+                    return true;
                 }
+                else
+                    return false;
 
-                return true;
+
             }
             catch (Exception e)
             {
-                return false;
                 Console.WriteLine(e);
                 throw;
             }
@@ -185,13 +202,25 @@ namespace ADP_Project_Final
             try
             {
                 var customer = context.Customers.Find(customerID);
-                context.Customers.Remove(customer);
-                context.SaveChanges();
-                return true;
+                if (customer != null)
+                {
+
+                    context.Customers.Remove(customer);
+                    context.SaveChanges();
+                    if (customer.Vip == 1)
+                    {
+                       var registered=  context.RegisteredCars.Where(r => r.CustomerID == customerID).ToList();
+                       context.RegisteredCars.RemoveRange(registered);
+                       context.SaveChanges();
+                    }                  
+                    return true;  
+                }
+                else
+                    return false;
+
             }
             catch (Exception e)
             {
-                return false;
                 Console.WriteLine(e);
                 throw;
             }
@@ -222,13 +251,14 @@ namespace ADP_Project_Final
                 {
                     VIP.Vip = 1;
                     context.SaveChanges();
+                    return true;
                 }
+                else
+                    return false;
 
-                return true;
             }
             catch (Exception e)
             {
-                return false;
                 Console.WriteLine(e);
                 throw;
             }
@@ -237,14 +267,54 @@ namespace ADP_Project_Final
 
         public bool RemoveRegisteredCar(int carID, int VIPID)
         {
-            var registeredCar = context.RegisteredCars.FirstOrDefault(r => r.CustomerID == VIPID && r.CarID == carID);
-            if (registeredCar != null)
+            try
             {
-                context.RegisteredCars.Remove(registeredCar);
-                context.SaveChanges();
+                var registeredCar = context.RegisteredCars.FirstOrDefault(r => r.CustomerID == VIPID && r.CarID == carID);
+                if (registeredCar != null)
+                {
+                    context.RegisteredCars.Remove(registeredCar);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
 
-            return true;
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            var customers = context.Customers.ToList();
+            return customers;
+        }
+
+        public bool Login(string userName, string password)
+        {
+            try
+            {
+                var customer = context.Customers.FirstOrDefault(c => c.Name == userName);
+                if (customer != null)
+                {
+                    if (customer.Password == password)
+                        return true;
+                    else
+                        return false;
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return false;
         }
     }
 }
