@@ -89,10 +89,16 @@ namespace ADP_Project_Final
 
         public List<Position> RetrieveFreePositions()
         {
-            var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID);
-            var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
+            List<Position> freePositions = new List<Position>();
+            var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null);
+            if (ParksIDsOFCars != null)
+            {
+            var  Ids =   ParksIDsOFCars.Select(c => c.ParkID);  
+            freePositions = context.Positions.Where(p => !Ids.Contains(p.ID)).ToList();
 
-            return FreePositions;
+            }
+              
+            return freePositions;
         }
 
 
@@ -117,6 +123,19 @@ namespace ADP_Project_Final
             }
         }
 
+
+        public List<Car> GetCarsOfCustomer(int customerID)
+        {
+            List<Car> cars = new List<Car>();
+            var carsCont = context.Cars.Where(c => c.CustomerID == customerID && c.LeavingTime == null);
+               
+            if (carsCont != null)
+                cars = carsCont.ToList();
+            return cars;
+
+        }
+        
+        
         public bool MakePositionCarEmpty(int positionID)
         {
             try
@@ -145,10 +164,16 @@ namespace ADP_Project_Final
         public Position RetrieveNearestPosition()
         {
             List<Position> sortedPositions = new List<Position>();
-            var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID);
-            var FreePositions = context.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
-            sortedPositions = FreePositions.OrderBy(p => Math.Abs((int) p.Floor)).ToList();
-            return sortedPositions[0];
+            var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null);
+            if (ParksIDsOFCars != null)
+            {
+                var ids = ParksIDsOFCars.Select(c => c.ParkID);
+                var FreePositions = context.Positions.Where(p => !ids.Contains(p.ID)).ToList();
+                sortedPositions = FreePositions.OrderBy(p => Math.Abs((int) p.Floor)).ToList();
+                return sortedPositions[0];
+            }
+            return new Position(){ID = -1};
+         
         }
 
 

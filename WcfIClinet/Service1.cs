@@ -41,10 +41,23 @@ namespace WcfIClinet
         {
             List<int> ids = new List<int>(); 
             ADP_ParkingEntities db = new ADP_ParkingEntities();
-            var ParksIDsOFCars = db.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID);
-            var FreePositions = db.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
-            foreach (int i in ParksIDsOFCars)
-                ids.Add((int)i);
+            var ParksIDsOFCars = db.Cars.Where(c => c.LeavingTime == null);
+            if (ParksIDsOFCars != null)
+            {
+                var nonFreePositions = ParksIDsOFCars.Select(c => c.ParkID);
+                var FreePositions = db.Positions.Where(p => !nonFreePositions.Contains(p.ID));
+                if (FreePositions != null)
+                {
+                    var FreeIDs = FreePositions.Select(c => c.ID).ToList();
+                    foreach (int i in FreeIDs)
+                        ids.Add((int)i);
+
+                }
+               
+            }
+                
+                
+            
 
             return ids;
         }
@@ -52,10 +65,15 @@ namespace WcfIClinet
         {
             List<int> ids = new List<int>(); 
             ADP_ParkingEntities db = new ADP_ParkingEntities();
-            var ParksIDsOFCars = db.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID).ToList();
-            var FreePositions = db.Positions.Where(p => ParksIDsOFCars.Contains(p.ID)).ToArray();
-            foreach (int i in ParksIDsOFCars)
-                ids.Add((int)i);
+            var ParksIDsOFCars = db.Cars.Where(c => c.LeavingTime == null);
+            if (ParksIDsOFCars != null)
+            {
+                var nonfree = ParksIDsOFCars .Select(c => c.ParkID).ToList();
+                foreach (int i in nonfree)
+                    ids.Add((int)i);
+            }
+             
+
             return ids;
         }
 
