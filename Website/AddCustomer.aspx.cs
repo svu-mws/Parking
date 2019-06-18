@@ -17,9 +17,10 @@ namespace Website
         {
 
             var customerName = inputCustomer.Text; ;
+            var customerPassword = inputPassword.Text;
             var isVIP = chkVIP.Checked; ;
             System.Diagnostics.Debug.WriteLine(customerName + "  " + isVIP);
-            var result = Global.DataSource.AddCustomer(customerName, isVIP);
+            var result = Global.DataSource.AddCustomer(customerName,customerPassword, isVIP);
 
             if (result != null)
             {

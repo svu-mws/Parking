@@ -21,6 +21,8 @@ namespace WebApplication1
             );
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(
 config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml"));
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
+= Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }

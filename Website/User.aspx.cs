@@ -16,25 +16,6 @@ namespace Website
 
         protected void Login_Click(object sender, EventArgs e)
         {
-            var username = inputUsername.Text;
-            var password = inputPassword.Text;
-
-
-            if (username == "admin" && password == "admin")
-            {
-                Session["user"] = "admin";
-                Response.Redirect("/");
-
-            }
-            else if (Global.DataSource.login(username, password))
-            {
-                // Check if user exist from database 
-                Session["user"] = username;
-
-            }
-            else
-                txtResult.Text = "Invalid UserName Or Password";
-
 
         }
     }

@@ -11,6 +11,19 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var user = Session["user"];
+
+         
+            if (user == "admin")
+            {
+                Response.Redirect("/");
+
+            }
+            else if (user != null)
+            {
+                Response.Redirect("user");
+
+            }
 
         }
 

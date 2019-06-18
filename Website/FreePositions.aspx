@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/UserSite.Master" CodeBehind="FreePositions.aspx.cs" Inherits="Website.FreePositions" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="FreePositions.aspx.cs" Inherits="Website.FreePositions" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Free Positions</h2>

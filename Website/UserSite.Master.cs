@@ -7,18 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class SiteMaster : MasterPage
+    public partial class UserSiteMaster : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if(Session["user"] == "")
-            // if admin 
-            var user = Session["user"];
-            if (user != "admin")
-            {
-                Response.Redirect("login.aspx");
-            }
-
+         
 
         }
     }

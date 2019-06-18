@@ -20,7 +20,6 @@ namespace Website
 
             wcfServiceClient = new ServiceReference1.Service1Client();
 
-            System.Diagnostics.Debug.WriteLine("!!!!   " + wcfServiceClient.GetNonFreePositionsForShowMap().Length);
 
             object[] url = { new UrlAttribute("tcp://localhost:9000/CAO") };
             remotingClientActivatedObject = (ClientActivatedObject)Activator.CreateInstance(
@@ -28,8 +27,7 @@ namespace Website
             if (_isInitialized == false)
             {
                 remotingClientActivatedObject = new ClientActivatedObject();
-                //serviceClient = new BidsServiceClient();
-
+                
                 _isInitialized = true;
             }
 
@@ -39,7 +37,8 @@ namespace Website
         internal bool login(string username, string password)
         {
             // Check if username is customer or not
-            return remotingClientActivatedObject.Login(username,password);
+            var res = remotingClientActivatedObject.Login(username, password);
+            return res;
         }
 
         public Car AddCar(string city, string company, string color, string arrivalTime, string leavingTime, int ParkID, string customerName, bool isRegistered)
@@ -47,8 +46,6 @@ namespace Website
             //Done
             Car newCar = remotingClientActivatedObject.AddCar(city, company, color, Convert.ToDateTime(arrivalTime), DateTime.Now, ParkID, customerName, isRegistered);
             return newCar;
-            //    return new Car()
-            //      {City = "test", Color = "red", Company = "tete", ArrivalTime = DateTime.MinValue, ID = GetHashCode()};
         }
 
         public bool RemoveCar(int id)
@@ -88,10 +85,10 @@ namespace Website
             return remotingClientActivatedObject.RetrieveFreePositions();
         }
 
-        public bool AddCustomer(string customerName, bool isVIP)
+        public bool AddCustomer(string customerName,string password, bool isVIP)
         {
             //Done
-            return remotingClientActivatedObject.AddCustomer(customerName,"", isVIP);
+            return remotingClientActivatedObject.AddCustomer(customerName,password, isVIP);
         }
 
         public bool ModifyVIP(int VIPID, string VIPName)
@@ -128,9 +125,21 @@ namespace Website
         //- Add/remove/retrieve registered car   
         public List<Customer> GetAllCustomers()
         {
- 
-           return  remotingClientActivatedObject.GetAllCustomers();
-     
+
+            return remotingClientActivatedObject.GetAllCustomers();
+
         }
+        public int[] GetFreePositionsForShowMap()
+        {
+            return wcfServiceClient.GetFreePositionsForShowMap();
+
+        }
+        public int[] GetNonFreePositionsForShowMap()
+        {
+            return wcfServiceClient.GetNonFreePositionsForShowMap();
+
+        }
+
+
     }
 }

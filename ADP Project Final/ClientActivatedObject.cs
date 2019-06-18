@@ -328,11 +328,7 @@ namespace ADP_Project_Final
                 var customer = context.Customers.FirstOrDefault(c => c.Name == userName);
                 if (customer != null)
                 {
-                    if (customer.Password == password)
-                        return true;
-                    else
-                        return false;
-
+                    return customer.Password == password;
                 }
             }
             catch (Exception e)

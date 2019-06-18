@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Website {
-    
-    
-    public partial class SiteMaster {
-        
+namespace Website
+{
+
+
+    public partial class UserSiteMaster
+    {
+
         /// <summary>
         /// MainContent control.
         /// </summary>

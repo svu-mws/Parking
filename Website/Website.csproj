@@ -138,6 +138,7 @@
     <Content Include="Content\fa-solid-900.woff.css" />
     <Content Include="Content\fa-solid-900.woff2.css" />
     <Content Include="Content\font-awesome-all.css" />
+    <Content Include="Scripts\d3.v4.min.js" />
     <Content Include="User.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PositionsMap.aspx" />
@@ -245,6 +246,7 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Properties\DataSources\Model.Position.datasource" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -319,6 +321,16 @@
       <DependentUpon>AddCar.aspx</DependentUpon>
     </Compile>
     <Compile Include="controllers\CustomerController.cs" />
+    <Compile Include="controllers\BusyPositionsController.cs" />
+    <Compile Include="controllers\FreePositionsController.cs" />
+    <Compile Include="controllers\PositionsController.cs" />
+    <Compile Include="UserSite.Master.cs">
+      <DependentUpon>UserSite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite.Master.designer.cs">
+      <DependentUpon>UserSite.Master</DependentUpon>
+    </Compile>
     <Compile Include="User.aspx.cs">
       <DependentUpon>User.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -366,7 +378,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AdpDataSource.cs" />
     <Compile Include="controllers\NearestPositionController.cs" />
-    <Compile Include="controllers\PositionsController.cs" />
     <Compile Include="controllers\CarsController.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -450,6 +461,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="UserSite.Master" />
     <None Include="Service References\ServiceReference1\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>

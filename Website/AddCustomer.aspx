@@ -5,7 +5,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add a car</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add A Customer</h5>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -13,6 +13,12 @@
                             <label for="inputColor">Customer Name</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="inputCustomer" placeholder="Customer name" required />
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="inputColor">Customer Password</label>
+                            <asp:TextBox runat="server" CssClass="form-control" ID="inputPassword" type="password" required />
+                        </div>
+                        
                         <div class="form-group">
                             <label for="inputColor">VIP</label>
                             <asp:CheckBox runat="server" CssClass="form-control" ID="chkVIP" placeholder="Enter color" required />
