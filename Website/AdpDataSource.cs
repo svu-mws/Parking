@@ -91,7 +91,7 @@ namespace Website
         public bool AddCustomer(string customerName, bool isVIP)
         {
             //Done
-            return remotingClientActivatedObject.AddCustomer(customerName, isVIP);
+            return remotingClientActivatedObject.AddCustomer(customerName,"", isVIP);
         }
 
         public bool ModifyVIP(int VIPID, string VIPName)

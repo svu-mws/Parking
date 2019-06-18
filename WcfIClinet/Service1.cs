@@ -37,13 +37,16 @@ namespace WcfIClinet
 
       
 
-        public Position[] GetFreePositionsForShowMap()
+        public List<int> GetFreePositionsForShowMap()
         {
+            List<int> ids = new List<int>(); 
             ADP_ParkingEntities db = new ADP_ParkingEntities();
             var ParksIDsOFCars = db.Cars.Where(c => c.LeavingTime == null).Select(c => c.ParkID);
-            var FreePositions = db.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToArray();
+            var FreePositions = db.Positions.Where(p => !ParksIDsOFCars.Contains(p.ID)).ToList();
+            foreach (int i in ParksIDsOFCars)
+                ids.Add((int)i);
 
-            return FreePositions;
+            return ids;
         }
         public List<int> GetNonFreePositionsForShowMap()
         {
@@ -53,9 +56,6 @@ namespace WcfIClinet
             var FreePositions = db.Positions.Where(p => ParksIDsOFCars.Contains(p.ID)).ToArray();
             foreach (int i in ParksIDsOFCars)
                 ids.Add((int)i);
-
-
-
             return ids;
         }
 

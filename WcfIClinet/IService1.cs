@@ -17,7 +17,7 @@ namespace WcfIClinet
 
 
         [OperationContract]
-        Position[] GetFreePositionsForShowMap();
+        List<int> GetFreePositionsForShowMap();
 
 
         [OperationContract]

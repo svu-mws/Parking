@@ -22,10 +22,10 @@ namespace Website.ServiceReference1 {
         System.Threading.Tasks.Task<double> MyInvoicAsync(int CustID, int CarID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetFreePositionsForShowMap", ReplyAction="http://tempuri.org/IService1/GetFreePositionsForShowMapResponse")]
-        Model.Position[] GetFreePositionsForShowMap();
+        int[] GetFreePositionsForShowMap();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetFreePositionsForShowMap", ReplyAction="http://tempuri.org/IService1/GetFreePositionsForShowMapResponse")]
-        System.Threading.Tasks.Task<Model.Position[]> GetFreePositionsForShowMapAsync();
+        System.Threading.Tasks.Task<int[]> GetFreePositionsForShowMapAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetNonFreePositionsForShowMap", ReplyAction="http://tempuri.org/IService1/GetNonFreePositionsForShowMapResponse")]
         int[] GetNonFreePositionsForShowMap();
@@ -69,11 +69,11 @@ namespace Website.ServiceReference1 {
             return base.Channel.MyInvoicAsync(CustID, CarID);
         }
         
-        public Model.Position[] GetFreePositionsForShowMap() {
+        public int[] GetFreePositionsForShowMap() {
             return base.Channel.GetFreePositionsForShowMap();
         }
         
-        public System.Threading.Tasks.Task<Model.Position[]> GetFreePositionsForShowMapAsync() {
+        public System.Threading.Tasks.Task<int[]> GetFreePositionsForShowMapAsync() {
             return base.Channel.GetFreePositionsForShowMapAsync();
         }
         
