@@ -13,18 +13,15 @@ namespace Website
         {
             var user = Session["user"];
 
-         
+
             if (user == "admin")
             {
                 Response.Redirect("/");
-
             }
             else if (user != null)
             {
                 Response.Redirect("user");
-
             }
-
         }
 
         protected void Login_Click(object sender, EventArgs e)
@@ -37,20 +34,21 @@ namespace Website
             {
                 Session["user"] = "admin";
                 Response.Redirect("/");
-
-            }
-            else if (Global.DataSource.login(username, password))
-            {
-                // Check if user exist from database 
-                Session["user"] = username;
-                Response.Redirect("user");
-
-
             }
             else
-                txtResult.Text = "Invalid UserName Or Password";
-
-
+            {
+                var customer = Global.DataSource.login(username, password);
+                if (customer.ID != -1)
+                {
+                    // Check if user exist from database 
+                    Session["user"] = username;
+                    Session["userID"] = customer.ID;
+                    Session["userName"] = customer.Name;
+                    Response.Redirect("user");
+                }
+                else
+                    txtResult.Text = "Invalid UserName Or Password";
+            }
         }
     }
 }

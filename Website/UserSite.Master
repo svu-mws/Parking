@@ -51,6 +51,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css"/>
     <script src="Scripts/shuffle.min.js" language="javascript" type="text/javascript"></script>
 
+    <style>
+    .node circle {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 3px;
+    }
+
+    .node text {
+        font: 12px sans-serif;
+    }
+
+    .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+    }
+</style>
+
+    <!-- load the d3.js library -->
+    <script src="Scripts/d3.v4.min.js" language="javascript" type="text/javascript"></script>
+    
     <script type="text/javascript">
         function getContent(item,attribute){
             return item ? item[`<${attribute}>k__BackingField`]:'';
@@ -67,7 +88,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="Bill">Bill</a>
+                    <a class="nav-link" href="user">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="PositionsMap.aspx">Positions Map</a>
@@ -77,6 +98,8 @@
         </div>
     </nav>
     <div class="container-fluid">
+    <asp:Label ID="userID" runat="server" Font-Size="0" />
+
         <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         <hr/>
         <footer>

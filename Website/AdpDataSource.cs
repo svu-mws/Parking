@@ -34,7 +34,7 @@ namespace Website
             RemotingConfiguration.RegisterActivatedClientType(typeof(ClientActivatedObject), "tcp://localhost:9000/CAO");
             remotingClientActivatedObject = new ClientActivatedObject();
         }
-        internal bool login(string username, string password)
+        internal Customer login(string username, string password)
         {
             // Check if username is customer or not
             var res = remotingClientActivatedObject.Login(username, password);
@@ -65,6 +65,13 @@ namespace Website
             return remotingClientActivatedObject.GetAllCars();
 
         }
+        public List<Position> GetAllPositions()
+        {
+            //Done
+            return remotingClientActivatedObject.GetAllPositions();
+
+        }
+
 
         public Position GetCarPosition(int id)
         {

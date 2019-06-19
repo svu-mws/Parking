@@ -320,9 +320,11 @@
     <Compile Include="AddCar.aspx.designer.cs">
       <DependentUpon>AddCar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="controllers\BillController.cs" />
     <Compile Include="controllers\CustomerController.cs" />
     <Compile Include="controllers\BusyPositionsController.cs" />
     <Compile Include="controllers\FreePositionsController.cs" />
+    <Compile Include="controllers\AllPositionsController.cs" />
     <Compile Include="controllers\PositionsController.cs" />
     <Compile Include="UserSite.Master.cs">
       <DependentUpon>UserSite.Master</DependentUpon>

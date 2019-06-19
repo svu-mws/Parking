@@ -41,7 +41,7 @@ namespace ADP_Project_Final
             var CarID = newCar.ID;
 
             //Is VIP Customer
-            if (customer.Vip == 1 && isGrgisterdCar )
+            if (customer.Vip == 1 && isGrgisterdCar)
             {
                 context.RegisteredCars.Add(new RegisteredCar()
                 {
@@ -70,7 +70,6 @@ namespace ADP_Project_Final
                 }
                 else
                     return false;
-
             }
             catch (Exception e)
             {
@@ -93,11 +92,10 @@ namespace ADP_Project_Final
             var ParksIDsOFCars = context.Cars.Where(c => c.LeavingTime == null);
             if (ParksIDsOFCars != null)
             {
-            var  Ids =   ParksIDsOFCars.Select(c => c.ParkID);  
-            freePositions = context.Positions.Where(p => !Ids.Contains(p.ID)).ToList();
-
+                var Ids = ParksIDsOFCars.Select(c => c.ParkID);
+                freePositions = context.Positions.Where(p => !Ids.Contains(p.ID)).ToList();
             }
-              
+
             return freePositions;
         }
 
@@ -111,13 +109,13 @@ namespace ADP_Project_Final
                 {
                     var PositionCarNumber = position.ParkID;
                     Position PositionOfCar = context.Positions.Find(PositionCarNumber);
-                    return PositionOfCar;  
+                    return PositionOfCar;
                 }
                 else
                     return new Position() {ID = -1};
             }
             catch (Exception e)
-            {              
+            {
                 Console.WriteLine(e);
                 throw;
             }
@@ -128,14 +126,13 @@ namespace ADP_Project_Final
         {
             List<Car> cars = new List<Car>();
             var carsCont = context.Cars.Where(c => c.CustomerID == customerID && c.LeavingTime == null);
-               
+
             if (carsCont != null)
                 cars = carsCont.ToList();
             return cars;
-
         }
-        
-        
+
+
         public bool MakePositionCarEmpty(int positionID)
         {
             try
@@ -150,15 +147,12 @@ namespace ADP_Project_Final
                 }
                 else
                     return false;
-
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
         }
 
         public Position RetrieveNearestPosition()
@@ -172,12 +166,12 @@ namespace ADP_Project_Final
                 sortedPositions = FreePositions.OrderBy(p => Math.Abs((int) p.Floor)).ToList();
                 return sortedPositions[0];
             }
-            return new Position(){ID = -1};
-         
+
+            return new Position() {ID = -1};
         }
 
 
-        public bool AddCustomer(string customerName,string password ,bool IsVIP)
+        public bool AddCustomer(string customerName, string password, bool IsVIP)
         {
             if (IsVIP)
             {
@@ -186,7 +180,6 @@ namespace ADP_Project_Final
                     Name = customerName,
                     Vip = 1,
                     Password = password
-                    
                 });
             }
             else
@@ -194,6 +187,7 @@ namespace ADP_Project_Final
                 context.Customers.Add(new Customer()
                 {
                     Name = customerName,
+                    Password = password,
                 });
 
             context.SaveChanges();
@@ -213,15 +207,12 @@ namespace ADP_Project_Final
                 }
                 else
                     return false;
-
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
         }
 
         public bool RemoveCustomer(int customerID)
@@ -231,27 +222,25 @@ namespace ADP_Project_Final
                 var customer = context.Customers.Find(customerID);
                 if (customer != null)
                 {
-
                     context.Customers.Remove(customer);
                     context.SaveChanges();
                     if (customer.Vip == 1)
                     {
-                       var registered=  context.RegisteredCars.Where(r => r.CustomerID == customerID).ToList();
-                       context.RegisteredCars.RemoveRange(registered);
-                       context.SaveChanges();
-                    }                  
-                    return true;  
+                        var registered = context.RegisteredCars.Where(r => r.CustomerID == customerID).ToList();
+                        context.RegisteredCars.RemoveRange(registered);
+                        context.SaveChanges();
+                    }
+
+                    return true;
                 }
                 else
                     return false;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            
         }
 
         public Customer RetrieveVIP(int VIPID)
@@ -262,11 +251,10 @@ namespace ADP_Project_Final
             }
             catch (Exception e)
             {
-                return new Customer(){ID = -1};
+                return new Customer() {ID = -1};
                 Console.WriteLine(e);
                 throw;
             }
-          
         }
 
         public bool SetCustomerAsVIP(int customerID)
@@ -282,21 +270,20 @@ namespace ADP_Project_Final
                 }
                 else
                     return false;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-           
         }
 
         public bool RemoveRegisteredCar(int carID, int VIPID)
         {
             try
             {
-                var registeredCar = context.RegisteredCars.FirstOrDefault(r => r.CustomerID == VIPID && r.CarID == carID);
+                var registeredCar =
+                    context.RegisteredCars.FirstOrDefault(r => r.CustomerID == VIPID && r.CarID == carID);
                 if (registeredCar != null)
                 {
                     context.RegisteredCars.Remove(registeredCar);
@@ -305,14 +292,12 @@ namespace ADP_Project_Final
                 }
                 else
                     return false;
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
         }
 
         public List<Customer> GetAllCustomers()
@@ -320,15 +305,34 @@ namespace ADP_Project_Final
             var customers = context.Customers.ToList();
             return customers;
         }
+        public List<Position> GetAllPositions()
+        {
+            var positions = context.Positions.ToList();
+            return positions;
+        }
+        string RemoveExtraSpaces(string str)
+        {
+            str = str.Trim();
+            StringBuilder sb = new StringBuilder();
+            bool space = false;
+            foreach (char c in str)
+            {
+                if (char.IsWhiteSpace(c) || c == (char)9) { space = true; }
+                else { if (space) { sb.Append(' '); }; sb.Append(c); space = false; };
+            }
+            return sb.ToString();
+        }
 
-        public bool Login(string userName, string password)
+        public Customer Login(string userName, string password)
         {
             try
             {
                 var customer = context.Customers.FirstOrDefault(c => c.Name == userName);
-                if (customer != null)
+
+                
+                if (customer != null && RemoveExtraSpaces(customer.Password).Equals( password))
                 {
-                    return customer.Password == password;
+                    return customer;
                 }
             }
             catch (Exception e)
@@ -337,7 +341,7 @@ namespace ADP_Project_Final
                 throw;
             }
 
-            return false;
+            return new Customer() {ID = -1};
         }
     }
 }
