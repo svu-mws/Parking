@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SignOut.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AddCustomer.aspx" />
     <Content Include="AddCar.aspx" />
@@ -306,6 +307,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SignOut.aspx.cs">
+      <DependentUpon>SignOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignOut.aspx.designer.cs">
+      <DependentUpon>SignOut.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddCustomer.aspx.cs">
       <DependentUpon>AddCustomer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

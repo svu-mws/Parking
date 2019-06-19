@@ -34,6 +34,7 @@ namespace Website
         // DELETE api/customers/5
         public void Delete(int id)
         {
+             Global.DataSource.RemoveCustomer(id);
         }
     }
 }

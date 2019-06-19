@@ -76,18 +76,16 @@
                         let carID = $(e.currentTarget).data('id');
                         console.log(userID,carID);
                         $('#billModal').modal('toggle');
-/**
+
                         $.ajax({
-                            url: `api/bill/${carID}`,
+                            url: `api/bill/?carID=${carID}&userID=${userID}`,
                             type: 'GET',
                             success: (result) => {
                                 console.log(result);
-                                // if success 
-                                location.reload();
+                                $('#billVal').text(result);                             
                             },
                             error: e => alert(e.responseJSON.Message)
                         });
-**/
                     });
                 }
             });

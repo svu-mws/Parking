@@ -146,6 +146,11 @@ namespace Website
             return wcfServiceClient.GetNonFreePositionsForShowMap();
 
         }
+        public double GetInvoice(int userID,int carID)
+        {
+            return wcfServiceClient.MyInvoic(userID,carID);
+
+        }
 
 
     }

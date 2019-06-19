@@ -12,10 +12,11 @@ namespace Website
     public class BillController : ApiController
     {
 
-        // GET api/cars/5
-        public string Get(string id)
+        [HttpGet]  
+        public double Get(int userID,int carID)
         {
-            return id;
+
+            return Global.DataSource.GetInvoice(userID, carID);
         }
 
         // POST api/cars

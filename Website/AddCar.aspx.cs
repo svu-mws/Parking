@@ -22,7 +22,9 @@ namespace Website
             var positionID = Convert.ToInt32(inputPosition.Text);
             System.Diagnostics.Debug.WriteLine(city + " " + company + " " + color + " " + arrivalTime+ " " + positionID);
             var customerName = inputCustomer.Text;
-            var result = Global.DataSource.AddCar(city, company, color, arrivalTime, arrivalTime,positionID,customerName,true);
+            var isRegistered = chkRegistered.Checked; ;
+
+            var result = Global.DataSource.AddCar(city, company, color, arrivalTime, arrivalTime,positionID,customerName, isRegistered);
 
             if (result.ID != null)
             {

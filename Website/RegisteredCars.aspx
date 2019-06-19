@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <h2>Remove A Car</h2>
+        <h2>Registered Cars</h2>
         <table class="shadow cars-table table table-hover">
             <thead class="thead-light">
                 <tr>

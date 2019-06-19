@@ -34,6 +34,11 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="inputColor">Register ? </label>
+                            <asp:CheckBox runat="server" CssClass="form-control" ID="chkRegistered" required />
+                        </div>
+
+                        <div class="form-group">
                             <label class="form-check-label" for="inputPositon">Position</label>
                             <asp:TextBox runat="server" CssClass="form-control" ID="inputPosition" placeholder="Nearest Position" />
                             <div id="btnNearest" data-toggle="modal" data-target="#bookModal" class="btn btn-primary btn-success">Choose Positions</div>
@@ -96,16 +101,16 @@
                 var table = $('#freePositions').DataTable({
                     orderCellsTop: true,
                     fixedHeader: true,
-                      });
-                $('#freePositions').on( 'draw.dt', function () {
-                        let $btn = $('.btn-book');
-                        $btn.off('click').on('click',(e) => { 
-                            let positionID = $(e.currentTarget).data('id');
-                            console.log(positionID);
-                            $("#MainContent_inputPosition").val(positionID);
-                           $('#bookModal').modal('toggle');
-                        });
-                } );
+                });
+                $('#freePositions').on('draw.dt', function () {
+                    let $btn = $('.btn-book');
+                    $btn.off('click').on('click', (e) => {
+                        let positionID = $(e.currentTarget).data('id');
+                        console.log(positionID);
+                        $("#MainContent_inputPosition").val(positionID);
+                        $('#bookModal').modal('toggle');
+                    });
+                });
                 let header = $('#freePositions thead tr').clone(true);
                 header.find("th").removeClass("sorting_asc sorting_des sorting");
                 header.appendTo('#freePositions thead');
@@ -135,7 +140,7 @@
 
                     }
                 });
-});
+            });
 
         </script>
     </div>
